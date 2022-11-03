@@ -7,7 +7,7 @@ import java.util.Scanner;
  * User: gohuy
  * Package: Basic
  * Created by Phan Huy
- * Date 10/2/2022 - 2:05 PM
+ * Date 10/31/2022 - 2:05 PM
  * Description: Bai05 Tính S(n) =1+ + + ... +
  * Trong đó n nhập từ người dùng, n >= 2
  */

@@ -2,6 +2,11 @@ package Project_1.DanhSach;
 
 import Project_1.HocSinh.HocSinh;
 
+import java.io.IOException;
+import java.sql.Array;
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * IntelliJ IDEA
  * User: gohuy
@@ -16,32 +21,48 @@ public class DanhSach {
      * df is default number of students
      */
     static int countStu = 0; // count students numbers
-    private HocSinh hs[] = null;
-
+    private ArrayList<HocSinh> hocSinhArrayList = null;
     /**
      *  Default constructor of class DanhSach
      *
      */
     public DanhSach() {
-        this.hs = new HocSinh[50]; // default constructor will make class DanhSach have 50 HocSinh
+        this.hocSinhArrayList = new ArrayList<HocSinh>();
     }
 
-    /**
-     * Constructor with parameter
-     * @param nStu is the parameter of number students
-     */
-    public DanhSach(int nStu) {
-        this.hs = new HocSinh[nStu];
+    public boolean addStudent(int i, HocSinh student) {
+        if (student == null || hocSinhArrayList.contains(student)) {
+            return false;
+        }
+        hocSinhArrayList.add(i, student);
+        return true;
     }
 
+    public ArrayList<HocSinh> getHocSinhArrayList() {
+        return hocSinhArrayList;
+    }
+
+    public HocSinh getStudent(int i) {
+        return this.hocSinhArrayList.get(i);
+    }
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        assert this.hocSinhArrayList != null; //null exception
+        for (HocSinh hocSinh : this.hocSinhArrayList) {
+            sb.append(hocSinh.toString());
+        }
+        return sb.toString();
+    }
     /**
      * Copy constructor of class DanhSach
      * @param ds is the parameter
      */
     public DanhSach(DanhSach ds) {
-        this.hs = ds.hs;
+        this.hocSinhArrayList = ds.hocSinhArrayList;
     }
     public int getNumStu() {
-        return 1;
+        return countStu;
     }
+
 }

@@ -6,7 +6,7 @@ import java.util.Scanner;
  * IntelliJ IDEA
  * User: gohuy
  * Created by Phan Huy
- * Date 10/2/2022 - 1:17 PM
+ * Date 10/31/2022 - 1:17 PM
  * Description: Tính S(n) =1+ + + ... +
  * Trong đó n nhập từ người dùng, n >= 7
  */

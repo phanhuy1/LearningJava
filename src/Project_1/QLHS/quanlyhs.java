@@ -1,5 +1,6 @@
 package Project_1.QLHS;
 
+import Project_1.DanhSach.DanhSach;
 import Project_1.HocSinh.HocSinh;
 
 import javax.imageio.ImageIO;
@@ -21,13 +22,19 @@ public class quanlyhs {
      */
     public static void main(String[] args) throws IOException {
         HocSinh a = new HocSinh();
-        a.inputStudent();
-        System.out.println(a.toString());
-        File input = new File("D:\\Desktop\\hocsinh.csv");
-        a.toStringCsv(input);
+        DanhSach listHs = new DanhSach();
+        for(int i = 0; i < 2; i++) {
+            a.inputStudent();
+            listHs.getHocSinhArrayList().add(a);
+        }
+        for(int i = 0; i < 2; i++) {
+            System.out.println(listHs.getStudent(i).toString());
+        }
+        //File input = new File("D:\\Desktop\\hocsinh.csv");
+        //a.toStringCsv(input);
         /*
         BufferedImage img = null;
-        File fin = null;
+        File fin  = null;
         try {
             fin = new File("src\\Project_1\\Images\\testimage.jpg");
             img = new BufferedImage(600, 600, BufferedImage.TYPE_INT_ARGB);

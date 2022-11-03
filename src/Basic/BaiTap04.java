@@ -7,7 +7,7 @@ import java.util.Scanner;
  * User: gohuy
  * Package: Basic
  * Created by Phan Huy
- * Date 10/2/2022 - 2:02 PM
+ * Date 10/31/2022 - 2:02 PM
  * Description: ...
  */
 public class BaiTap04 {

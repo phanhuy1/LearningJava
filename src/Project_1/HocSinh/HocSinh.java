@@ -1,10 +1,9 @@
 package Project_1.HocSinh;
 
-import Project_1.DanhSach.DanhSach;
-
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 
 /**
@@ -14,10 +13,6 @@ import java.util.Scanner;
  * Created by Phan Huy
  * Date 10/10/2022 - 2:47 PM
  * Description: ...
- */
-
-/**
- * @class HocSinh
  */
 public class HocSinh {
     /**
@@ -46,12 +41,12 @@ public class HocSinh {
 
     /**
      * Constructor with parameters
-     * @param id
-     * @param name
-     * @param gpa
-     * @param img
-     * @param addr
-     * @param notes
+     * @param id this is id parameter
+     * @param name this is name parameter
+     * @param gpa this is gpa parameter
+     * @param img this is img parameter
+     * @param addr this is addr parameter
+     * @param notes this is notes parameter
      */
     public HocSinh(String id, String name, float gpa, BufferedImage img, String addr, String notes) {
         this.stuId = id;
@@ -168,7 +163,7 @@ public class HocSinh {
      */
 
     public void inputStudent() throws IOException {
-        Scanner scanner = new Scanner(System.in, "utf8");
+        Scanner scanner = new Scanner(System.in, StandardCharsets.UTF_8);
         System.out.println("Input student information!");
         System.out.print("Student ID: ");
         this.stuId = scanner.nextLine();
@@ -187,6 +182,15 @@ public class HocSinh {
         this.stuAddr = scanner.nextLine();
         System.out.print("Notes: ");
         this.notes = scanner.nextLine();
+        return;
+    }
+    public void inputStudent(HocSinh a) {
+        this.gpa = a.gpa;
+        this.img = a.img;
+        this.notes = a.notes;
+        this.stuId = a.stuId;
+        this.stuAddr = a.stuAddr;
+        this.stuName = a.stuName;
     }
     @Override
     public String toString() {
@@ -197,14 +201,37 @@ public class HocSinh {
     public void toStringCsv(File fin) {
         Scanner scanner = new Scanner(System.in);
         try {
-            PrintWriter writer = new PrintWriter(fin);
             StringBuilder sb = new StringBuilder();
-            sb.append("Student ID,");
-            sb.append("Name,");
-            sb.append("");
-            sb.append("\n");
-            sb.append(this.stuId);
-            sb.append(this.stuName);
+            FileInputStream Fin;
+            BufferedReader reader = null;
+            try {
+                Fin = new FileInputStream(fin);
+                reader = new BufferedReader(new InputStreamReader(Fin));
+            }
+            catch (FileNotFoundException exc) {
+                System.out.println("File not found");
+                return;
+            }
+            String info=" ";
+            info = reader.readLine();
+            String tmp[];
+            tmp = info.split(",");
+            if (tmp[0] == "Student ID") {
+                sb.append("Student ID,");
+                sb.append("Name,");
+                sb.append("GPA,");
+                sb.append("IMG,");
+                sb.append("Address,");
+                sb.append("Notes,");
+                sb.append("\n");
+            }
+            sb.append(this.stuId).append(",");
+            sb.append(this.stuName).append(",");
+            sb.append(this.gpa).append(",");
+            sb.append(this.img.toString()).append(",");
+            sb.append(this.stuAddr).append(",");
+            sb.append(this.notes).append(",\n");
+            PrintWriter writer = new PrintWriter(fin);
             writer.write(sb.toString());
             writer.close();
             System.out.println("Completed");

@@ -1,6 +1,5 @@
 package Basic;
 
-import java.math.BigInteger;
 import java.util.Scanner;
 
 /**
@@ -8,29 +7,31 @@ import java.util.Scanner;
  * User: gohuy
  * Package: Basic
  * Created by Phan Huy
- * Date 10/31/2022 - 1:55 PM
+ * Date 11/1/2022 - 4:01 PM
  * Description: ...
  */
-public class BaiTap11 {
-
+public class BaiTap16 {
     //main here
     /**
      * @param args is input from terminal
      */
     public static void main(String[] args) {
         //Declaration
-        int sum = 0;
-        int n;
+        double sum = 0;
+        double n;
+        double x;
         Scanner scanner = new Scanner(System.in);
+        System.out.print("Please input x: ");
+        x = scanner.nextDouble();
         System.out.print("Please input n: ");
-        n = scanner.nextInt();
-        for (int i = 1; i <= n; i++) {
-            sum += factorial(i);
+        n = scanner.nextDouble();
+        for (double i = 1; i <= n; i++) {
+            sum += (x * i)/sumInt(i);
         }
         System.out.println(sum);
     }
-    public static int factorial(int n) {
+    public static double sumInt(double n) {
         if (n == 1) return 1;
-        return n * factorial(n - 1);
+        return n + sumInt(n - 1);
     }
 }
