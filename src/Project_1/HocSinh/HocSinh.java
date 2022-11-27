@@ -1,7 +1,6 @@
 package Project_1.HocSinh;
 
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
+
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
@@ -11,7 +10,7 @@ import java.util.Scanner;
  * User: gohuy
  * Package: Project_1.HocSinh
  * Created by Phan Huy
- * Date 10/10/2022 - 2:47 PM
+ * Date 10/29/2022 - 2:47 PM
  * Description: ...
  */
 public class HocSinh {
@@ -21,7 +20,7 @@ public class HocSinh {
     private String stuId;
     private String stuName;
     private Float gpa;
-    private BufferedImage img;
+    private String img;
     //private String img;
     private String stuAddr;
     private String notes;
@@ -34,7 +33,7 @@ public class HocSinh {
         this.stuId = null;
         this.stuName = null;
         this.gpa = 0f;
-        this.img = new BufferedImage(600, 600, BufferedImage.TYPE_INT_ARGB);
+        this.img = null;
         this.stuAddr = null;
         this.notes = null;
     }
@@ -48,7 +47,7 @@ public class HocSinh {
      * @param addr this is addr parameter
      * @param notes this is notes parameter
      */
-    public HocSinh(String id, String name, float gpa, BufferedImage img, String addr, String notes) {
+    public HocSinh(String id, String name, float gpa, String img, String addr, String notes) {
         this.stuId = id;
         this.stuName = name;
         this.gpa = gpa;
@@ -74,8 +73,9 @@ public class HocSinh {
      * Getter of student ID
      * @return String stuId
      */
-    public String getStuId() {
-        return stuId;
+    public int getStuId() {
+        int tmp = Integer.valueOf(stuId);
+        return tmp;
     }
 
     /**
@@ -110,21 +110,21 @@ public class HocSinh {
      * Setter of student GPA
      * @param gpa is the parameter
      */
-    public void setGpa(float gpa) {
+    public void setGpa(Float gpa) {
         this.gpa = gpa;
     }
     /**
      * Getter of student Image
      * @return String information of student image
      */
-    public BufferedImage getImg() {
+    public String getImg() {
         return img;
     }
     /**
      * Setter of student Image
      * @param img is the parameter
      */
-    public void setImg(BufferedImage img) {
+    public void setImg(String img) {
         this.img = img;
     }
     /**
@@ -176,8 +176,7 @@ public class HocSinh {
             e.printStackTrace();
         }
         System.out.print("Input name of Image: ");
-        File fin = new File(scanner.nextLine());
-        this.img = ImageIO.read(fin);
+        this.img = scanner.nextLine();
         System.out.print("Address: ");
         this.stuAddr = scanner.nextLine();
         System.out.print("Notes: ");
@@ -194,7 +193,7 @@ public class HocSinh {
     }
     @Override
     public String toString() {
-        return(this.stuId + " " + this.stuName + " " + this.gpa + " " + this.img.toString() + " " + this.stuAddr + " "
+        return(this.stuId + ", " + this.stuName + ", " + this.gpa + ", " + this.img.toString() + ", " + this.stuAddr + ", "
     + this.notes);
     }
 
@@ -212,25 +211,12 @@ public class HocSinh {
                 System.out.println("File not found");
                 return;
             }
-            String info=" ";
-            info = reader.readLine();
-            String tmp[];
-            tmp = info.split(",");
-            if (tmp[0] == "Student ID") {
-                sb.append("Student ID,");
-                sb.append("Name,");
-                sb.append("GPA,");
-                sb.append("IMG,");
-                sb.append("Address,");
-                sb.append("Notes,");
-                sb.append("\n");
-            }
             sb.append(this.stuId).append(",");
             sb.append(this.stuName).append(",");
             sb.append(this.gpa).append(",");
             sb.append(this.img.toString()).append(",");
             sb.append(this.stuAddr).append(",");
-            sb.append(this.notes).append(",\n");
+            sb.append(this.notes).append("\n");
             PrintWriter writer = new PrintWriter(fin);
             writer.write(sb.toString());
             writer.close();
